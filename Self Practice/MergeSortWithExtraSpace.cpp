@@ -31,6 +31,9 @@ void merge(int *arr, int s, int e){
         arr[k++]=second[j++];
     }
 
+    delete []first;
+    delete []second;
+
 }
 
 void msort(int *arr, int s, int e){

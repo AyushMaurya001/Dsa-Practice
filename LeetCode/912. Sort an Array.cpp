@@ -1,0 +1,37 @@
+class Solution {
+public:
+
+    void merge(vector<int>& arr, int s, int e){
+
+        int m=s+(e-s)/2, len1=m-s+1, len2=e-m;
+        int left[len1], right[len2];
+        for (int i=0; i<len1; i++) left[i]=arr[s+i];
+        for (int i=0; i<len2; i++) right[i]=arr[m+1+i];
+        int i=0, j=0;
+        while (i<len1 && j<len2){
+            if (left[i]<right[j]) arr[s++]=left[i++];
+            else arr[s++]=right[j++];
+        }
+        while (i<len1) arr[s++]=left[i++];
+        while (j<len2) arr[s++]=right[j++];
+
+    }
+
+    void msort(vector<int>& arr, int s, int e){
+
+        if (s>=e) return;
+        int m=s+(e-s)/2;
+        msort(arr, s, m);
+        msort(arr, m+1, e);
+        merge(arr, s, e);
+
+    }
+
+    vector<int> sortArray(vector<int>& nums) {
+        
+        int s=0, e=nums.size()-1;
+        msort(nums, s, e);
+        return nums;
+
+    }
+};

@@ -48,9 +48,24 @@ void insertionAtPosition(node* &head, int pos, int n){
 
 }
 
-void deletionOfVal(node* head, int n){
+void deletionOfVal(node* &head, int n){
 
-    
+    if (head->val==n){
+        head=head->next;
+        return;
+    }
+    int i=1;
+    node* p=head;
+    node* pre=head;
+    while (head!=NULL){
+        if (head->val==n){
+            break;
+        }
+        pre=head;
+        head=head->next;
+    }
+    pre->next=head->next;
+    head=p;
 
 }
 
@@ -63,6 +78,14 @@ int main(){
     insertionAtPosition(head, 4, 100);
     insertionAtPosition(head, 3, 99);
     insertionAtPosition(head, 7, 90);
+    print(head);
+    deletionOfVal(head, 1);
+    print(head);
+    deletionOfVal(head, 90);
+    print(head);
+    deletionOfVal(head, 2);
+    print(head);
+    deletionOfVal(head, 99);
     print(head);
     
     return 0;
